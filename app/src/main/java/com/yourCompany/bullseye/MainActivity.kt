@@ -1,4 +1,4 @@
-package com.yourcompany.bullseye
+package com.yourCompany.bullseye
 
 import android.content.Intent
 import android.os.Bundle

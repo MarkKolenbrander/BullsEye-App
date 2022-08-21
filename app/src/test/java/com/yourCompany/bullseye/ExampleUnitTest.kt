@@ -1,4 +1,4 @@
-package com.yourcompany.bullseye
+package com.yourCompany.bullseye
 
 import org.junit.Test
 
