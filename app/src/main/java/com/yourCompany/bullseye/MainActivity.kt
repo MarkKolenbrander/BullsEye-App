@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private var targetValue = newTargetValue()
     private var totalScore = 0
     private var gameRound = 1
+    private var winningAmount = 500
 
     private lateinit var binding: ActivityMainBinding
 
@@ -31,9 +32,15 @@ class MainActivity : AppCompatActivity() {
         startNewGame()
 
         binding.buttonHitMe.setOnClickListener {
-            showResult()
+
             totalScore += pointsForCurrentRound()
             binding.gameScoreTextView?.text = totalScore.toString()
+
+            if(totalScore >= winningAmount){
+                winDialog()
+            }else {
+                showResult()
+            }
         }
 
         binding.startOverButton?.setOnClickListener {
@@ -125,6 +132,22 @@ class MainActivity : AppCompatActivity() {
         }
         return title
     }
+
+
+    private fun winDialog(){
+        val dialogTitle = "Congratulations!"
+        val dialogMessage = "You win!"
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle(dialogTitle)
+        builder.setMessage(dialogMessage)
+        builder.setPositiveButton("Ok") { dialog, _ ->
+            startNewGame()
+            dialog.dismiss()
+        }
+        builder.create().show()
+    }
+
 
 
 }
